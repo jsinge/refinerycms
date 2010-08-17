@@ -40,21 +40,21 @@ class RefineryPluginGenerator < Rails::Generator::NamedBase
       m.directory admin_view_dir
 
       # Copy in all views
-      admin_view_files = ['_form.html.erb', '_sortable_list.html.erb', 'edit.html.erb', 'index.html.erb', 'new.html.erb']
+      admin_view_files = ['_form.html.haml', '_sortable_list.html.haml', 'edit.html.haml', 'index.html.haml', 'new.html.haml']
 
       admin_view_files.each do |view_file|
-        m.template "views/admin/#{view_file}", "#{admin_view_dir}/#{view_file}"
+        m.template "views/admin/#{view_file}.erb", "#{admin_view_dir}/#{view_file}"
       end
 
-      m.template "views/admin/_singular_name.html.erb", "#{admin_view_dir}/_#{singular_name}.html.erb"
+      m.template "views/admin/_singular_name.html.haml.erb", "#{admin_view_dir}/_#{singular_name}.html.haml"
 
       # Now for the public views and controller
       public_dir = File.join("vendor/plugins/#{plural_name}/app/views/", plural_name)
       m.directory public_dir
 
-      view_files = ['index.html.erb', 'show.html.erb']
+      view_files = ['index.html.haml', 'show.html.haml']
       view_files.each do |view_file|
-        m.template "views/#{view_file}", "#{public_dir}/#{view_file}"
+        m.template "views/#{view_file}.erb", "#{public_dir}/#{view_file}"
       end
 
       m.template "public_controller.rb", "vendor/plugins/#{plural_name}/app/controllers/#{plural_name}_controller.rb"
