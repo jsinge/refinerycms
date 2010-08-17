@@ -1,7 +1,7 @@
 - form_for [:admin, @<%= singular_name %>] do |f|
   = f.error_messages
   <% attributes.each_with_index do |attribute, index| %>
-  %div class='field'
+  .field
     = f.label :<%= attribute.name %>
 <% if attribute.type.to_s == 'image' -%>
     = render :partial => "/shared/admin/image_picker",
@@ -25,4 +25,3 @@
     :locals => { :f => f,
       :continue_editing => false,
       :delete_title => t('admin.<%= plural_name %>.<%= singular_name %>.delete') }
-- end
