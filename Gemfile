@@ -74,6 +74,7 @@ group :test do
   gem 'spork' unless Bundler::WINDOWS
   gem 'launchy'
   gem 'gherkin'
+  gem 'pickle'
   # TODO: Change back to gem when patch is merged in
   gem 'rack-test',              :git => 'git://github.com/alan/rack-test.git'
   # FIXME: JSON constant constants warnings
