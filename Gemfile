@@ -53,6 +53,7 @@ rmagick_options.update({
 
 # Specify a version of RMagick that works in your environment:
 gem 'rmagick',                  '~> 2.12.0', rmagick_options
+gem 'haml',             '>= 3.0.0'
 
 # END REFINERY CMS ============================================================
 
