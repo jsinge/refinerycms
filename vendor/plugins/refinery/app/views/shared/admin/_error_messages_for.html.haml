@@ -1,0 +1,2 @@
+= error_messages_for symbol
+%input#fieldsWithErrors{:type => "hidden", :value => object.errors.collect { |attrib, msg| "#{object.class.name.underscore}_#{attrib}"}.join(",")}/

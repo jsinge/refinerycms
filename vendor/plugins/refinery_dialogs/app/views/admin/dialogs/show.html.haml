@@ -1,0 +1,15 @@
+%form#wym_dialog_form{:class => "wym_dialog wym_dialog_#{@dialog_type}"}
+  %input#wym_dialog_type.wym_dialog_type{:type => "hidden", :value => @dialog_type}/
+  %iframe#dialog_frame{:frameborder => "0", :src => @iframe_src}
+  .wym_hideables
+    - if @dialog_type == "image"
+      %input#wym_src.wym_src{:type => "hidden", :value => ""}/
+      %input#wym_alt.wym_alt{:type => "hidden", :value => ""}/
+      %input#wym_title.wym_title{:type => "hidden", :value => ""}/
+      %input#wym_size.wym_size{:type => "hidden", :value => ""}/
+    - elsif @dialog_type == "link"
+      %input#wym_href.wym_href{:type => "hidden", :value => ""}/
+      %input#wym_title.wym_title{:type => "hidden", :value => ""}/
+      %input#wym_target.wym_target{:type => "hidden", :value => ""}/
+    <input id='wym_dialog_submit' class='wym_submit submit_dialog button' type='button' value='#{@submit_button_text ||= 'Save'}' />
+    %a#wym_dialog_cancel.wym_cancel.close_dialog.button{:href => ""}= @cancel_button_text ||= 'Cancel'

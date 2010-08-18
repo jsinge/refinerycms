@@ -1,0 +1,44 @@
+#more_options_field
+  %p
+    = link_to t('.advanced_options'), "#",    |
+      :id => 'toggle_advanced_options',       |
+      :title => t('.toggle_advanced_options') |
+  %span#draft_field
+    = f.check_box :draft
+    = f.label :draft, t('.save_as_draft'), :class => "stripped"
+#more_options{:style => "display:none;"}
+  .hemisquare
+    %h2 Page Options
+    .field
+      %span.label_with_help
+        = f.label :parent_id, t('.parent_page')
+        = refinery_help_tag t('.parent_page_help')
+      = f.collection_select :parent_id, @pages_for_parents_list, :id, :indented_title, {:include_blank => true}, :class => 'widest'
+    .field
+      %span.label_with_help
+        = label_tag :custom_title, t('.custom_title')
+        = refinery_help_tag t('.custom_title_help')
+      - %w(none text).each do |type|
+        = f.radio_button :custom_title_type, type
+        = label_tag "page_custom_title_type_#{type}", t(".title_types.#{type.downcase.gsub(" ", "_")}"), :class => "stripped"
+      #custom_title_none
+      <div id='custom_title_text' style='display: #{@page.custom_title_type == 'text' ? 'block' : 'none'}'>
+      \#{f.text_field :custom_title, :class => 'widest'}
+  .field
+    %span.label_with_help
+      = f.label :skip_to_first_child?, t('.skip_to_first_child')
+      = refinery_help_tag t('.skip_to_first_child_help')
+    = f.check_box :skip_to_first_child
+    = f.label :skip_to_first_child, t('.skip_to_first_child_label'), :class => "stripped"
+  .field
+    %span.label_with_help
+      = f.label :link_url, t('.link_url')
+      = refinery_help_tag t('.link_url_help')
+    = f.text_field :link_url, :class => 'widest'
+  .field
+    %span.label_with_help
+      = f.label :show_in_menu, t('.show_in_menu_title'), :id => 'page_show_in_menu_heading'
+      = refinery_help_tag t('.show_in_menu_help')
+    = f.check_box :show_in_menu
+    = f.label :show_in_menu, t('.show_in_menu_description'), :class => "stripped"
+= render :partial => "form_advanced_options_seo", :locals => {:f => f} if RefinerySetting.find_or_set(:pages_advanced_options_include_seo, true)

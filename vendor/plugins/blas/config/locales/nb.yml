@@ -1,0 +1,19 @@
+nb:
+  plugins:
+    blas:
+      title: Blas
+  admin:
+    blas:
+      index:
+        create_new: Lag en ny Bla
+        reorder: Endre rekkefølgen på Blas
+        reorder_done: Ferdig å endre rekkefølgen Blas
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Blas enda. Klikk på "Lag en ny Bla" for å legge til din første bla.
+      bla:
+        view_live: Vis hvordan denne bla ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne bla
+        delete: Fjern denne bla permanent
+  blas:
+    show:
+      other: Andre Blas

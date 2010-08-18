@@ -1,0 +1,28 @@
+!!!
+%html
+  = render :partial => "/shared/head", :locals => {:theme => true}
+  %body
+    = render :partial => "/shared/site_bar"
+    #header
+      .inside
+        %h2
+          = link_to RefinerySetting.find_or_set(:site_name, "Company Name"), root_url
+        %p.description
+          = link_to "Home", root_url
+    #primary
+      .inside.clearfix
+        = yield
+    #ancillary
+      .inside
+        .block.first{:style => "margin: 0;"}
+        .block.pages
+          %h2
+            Pages
+          = render :partial => 'shared/menu'
+          .clear
+      %hr.hide/
+      #footer
+        .inside
+          %p{:style => "clear: both; text-align: center;"}
+            Copyright &copy; #{Time.now.year}
+            \#{RefinerySetting.find_or_set(:site_name, "Company Name")}

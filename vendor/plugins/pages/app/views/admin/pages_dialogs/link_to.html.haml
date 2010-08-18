@@ -1,0 +1,92 @@
+.clearfix.dialog_link_to
+  #dialog_menu_left
+    %span#your_page_radio{:class => "radio#{" selected_radio" if @page_area_selected}"}
+      <input type='radio' name='link_to' value='your_page' id='link_to_your_page' #{"checked='true'" if @page_area_selected} />
+      %label.stripped{:for => "link_to_your_page"}= t('.your_page.tab_name')
+    %span#web_address_radio{:class => "radio#{" selected_radio" if @web_address_area_selected}"}
+      <input type='radio' name='link_to' value='web_address' id='link_to_web_address' #{"checked='true'" if @web_address_area_selected} />
+      %label.stripped{:for => "link_to_web_address"}= t('.web_address.tab_name')
+    %span#email_address_radio{:class => "radio#{" selected_radio" if @email_address_area_selected}"}
+      <input type='radio' name='link_to' value='email_address' id='link_to_email_address' #{"checked='true'" if @email_address_area_selected} />
+      %label.stripped{:for => "link_to_email_address"}= t('.email_address.tab_name')
+    %span#resource_file_radio{:class => "radio#{" selected_radio" if @resource_area_selected}"}
+      <input type="radio" name="link_to" value="resource_file" id="link_to_resource_file" #{"checked='true'" if @resource_area_selected} />
+      %label.stripped{:for => "link_to_resource_file"}= t('.your_resource.tab_name')
+  #dialog_main
+    <div id='your_page_area' class='dialog_area' #{"style='display: none'" unless @page_area_selected}>
+    %input#selected_image{:name => "selected_image", :type => "hidden"}/
+    #your_page_content.clearfix
+      #pages_list
+        %ul.link_list
+          = render :partial => "page_link", :collection => @pages, :locals => {:child => false}
+        = will_paginate @pages,                |
+          :param_name => :page,                |
+          :previous_label => '&laquo;',        |
+          :next_label => '&raquo;',            |
+          :renderer => Refinery::LinkRenderer, |
+          :id => 'pages_paginate'              |
+  <div id='web_address_area' #{"style='display: none'" unless @web_address_area_selected} class='dialog_area'>
+  #web_address_content
+    %label{:for => "web_address_text"}= t('.web_address.location')
+    = text_field :web_address, :text, :value => @web_address_text, :style => "width: 70%"
+    %img#web_address_test_loader{:alt => "Testing...", :src => "/images/refinery/ajax-loader.gif", :style => "display: none;"}/
+    %span#web_address_test_result
+    %label= t('.web_address.new_window')
+    <input type='checkbox' name='web_address_target_blank' id='web_address_target_blank' #{"checked='checked'" if @web_address_target_blank} />
+    %label.stripped{:for => "web_address_target_blank"}= t('.web_address.new_window_label')
+    %p
+      %strong= t('.web_address.not_sure')
+    %ol
+      %li= t('.web_address.step1')
+      %li= t('.web_address.step2')
+<div id='email_address_area' #{"style='display: none'" unless @email_address_area_selected} class='dialog_area'>
+#email_address_content
+  .field
+    %label{:for => "email_address_text"}= t('.email_address.tab_name')
+    = text_field :email_address, :text, :value => @email_address_text, :style => "width: 70%"
+    %img#email_address_test_loader{:alt => "Testing...", :src => "/images/refinery/ajax-loader.gif", :style => "display: none;"}/
+    %span#email_address_test_result
+  .field
+    %label{:for => "email_default_subject_text"}= t('.email_address.subject_line_optional')
+    = text_field :email_default_subject, :text, :value => @email_default_subject_text, :style => "width: 70%"
+  .field
+    %label{:for => "email_default_body_text"}= t('.email_address.body_optional')
+    = text_area :email_default_body, :text, :value => @email_default_body_text, :style => "width: 70%", :rows => ''
+  %p
+    %strong= t('.email_address.not_sure')
+  %ol{:style => "margin-top: 3px"}
+    %li
+      = t('.email_address.step1')
+    %li
+      = t('.email_address.step2')
+    %li
+      = t('.email_address.step3')
+<div id="resource_file_area"#{" style='display:none'" unless @resource_area_selected} class="dialog_area">
+#pages_list
+  %ul.link_list
+    - @resources.each do |resource|
+      - resource_linked = (resource.public_filename == params[:current_link]) unless params[:current_link].blank?
+      <li#{" class='linked'" if @resource_linked}>
+      \#{link_to "#{resource.title}.#{resource.filename.split('.')[1]}", resource.public_filename, :title => t('.your_resource.link_to_this_resource'), :rel => resource.title, :class => "page_link #{resource.filename.split('.')[1]}"}
+  = will_paginate @resources,                 |
+    :param_name => :resource_page,            |
+    :previous_label => '&laquo;',             |
+    :next_label => '&raquo;',                 |
+    :renderer => Refinery::LinkRenderer,      |
+    :url => {:paginating => "resource_file"}, |
+    :id => 'resouces_paginate'                |
+= render :partial => "/shared/admin/form_actions", |
+  :locals => {                                     |
+    :f => nil,                                     |
+    :cancel_url => '',                             |
+    :submit_button_text => 'Insert',               |
+    :hide_cancel => false,                         |
+    :cancel_title => '',                           |
+    :hide_delete => true                           |
+  }                                                |
+- content_for :head do
+  :javascript
+    $(document).ready(function(){
+      link_dialog.init(' test_url_admin_pages_dialogs_url ',
+                       ' test_email_admin_pages_dialogs_url ');
+    });

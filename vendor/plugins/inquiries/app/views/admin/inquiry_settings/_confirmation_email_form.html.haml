@@ -1,0 +1,40 @@
+- form_for([:admin, @inquiry_setting], :url => (@url_override || @url)) do |f|
+  = f.error_messages
+  %p
+    = t('.explanation')
+  %p
+    = t('.below_edit_email_sent')
+  %table#inquiry
+    %tr
+      %td
+        %label.stripped= t('.to')
+      %td
+        = t('.the_customer_making_inquiry')
+    %tr
+      %td
+        %label.stripped= t('.from')
+      %td
+        = "#{RefinerySetting[:site_name]} &lt;no-reply@#{request.domain(RefinerySetting.find_or_set(:tld_length, 1))}&gt;"
+    %tr
+      %td
+        %label.stripped= t('.subject')
+      %td
+        = link_to InquirySetting.confirmation_subject.value, edit_admin_inquiry_setting_url(InquirySetting.confirmation_subject), |
+          :title => t('.click_to_edit_subject')                                                                                   |
+    %tr
+      %td{:valign => "top"}
+        = f.label :value, t('.message'), |
+          :class => 'stripped'           |
+      %td
+        = f.text_area :value, |
+          :rows => "5",       |
+          :class => 'widest'  |
+        %br/
+        %em= t('.note')
+  = render :partial => "/shared/admin/form_actions", |
+    :locals => {                                     |
+      :f => f,                                       |
+      :continue_editing => false,                    |
+      :cancel_url => admin_inquiries_url,            |
+      :hide_delete => true                           |
+    }                                                |

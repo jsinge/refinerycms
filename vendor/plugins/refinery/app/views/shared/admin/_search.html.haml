@@ -1,0 +1,4 @@
+%form.search_form{:action => url, :method => "GET"}
+  %input#search{:name => "search", :size => "22", :type => "search", :value => params[:search]}/
+  %input#dialog{:name => "dialog", :type => "hidden", :value => from_dialog?}/
+  = submit_tag t('admin.search'), :name => nil

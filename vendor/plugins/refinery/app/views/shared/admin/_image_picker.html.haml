@@ -1,0 +1,47 @@
+- description ||= "image"
+- thumbnail ||= "medium"
+- toggle_image_display ||= false
+- randomiser = rand(Time.now.yesterday.to_i * Time.now.to_i)
+- current_image_link_href = insert_admin_images_url(:dialog => true,
+- :callback => "image_picker_#{randomiser}_changed",
+- :width => 866,
+- :height => 510)
+- current_image_title = t('.change', :what =>  description.titleize)
+= link_to t('.show'), "", :id => "current_image_toggler_#{randomiser}" if toggle_image_display
+= f.hidden_field field, :id => "current_image_id_#{randomiser}"
+<div id='current_image_container_#{randomiser}'#{" style='display: none'" if toggle_image_display} style="margin-top: 10px;">
+%a.dialog{:href => current_image_link_href, :id => "current_image_link_#{randomiser}", :name => current_image_title, :style => "border: 0px", :title => current_image_title}
+  - unless image.nil?
+    = image_fu image, :medium,                    |
+      :class => "brown_border",                   |
+      :id => "current_picked_image_#{randomiser}" |
+  - else
+    %img{:alt => "", :id => "current_picked_image_#{randomiser}", :src => "", :style => "display: none"}/
+  <span id='no_picked_image_selected_#{randomiser}' class='nothing_selected' #{"style='display: none;'" if image.present?}>
+  \#{t('.none_selected', :what => t('.' + description ))}
+%br/
+= link_to t('.remove_current', :what => t('.' + description )), "#", |
+  :id => "remove_picked_image_#{randomiser}",                        |
+  :style => "#{"display:none;" if image.nil?}"                       |
+  - content_for :head do
+    :javascript
+      var image_picker_ randomiser _options = {
+        thumbnail: ' thumbnail '
+        , image_toggler: ' toggle_image_display ? "#current_image_toggler_\#{randomiser}" : "null" '
+        , description: ' description '
+        , field: '#current_image_id_ randomiser '
+        , image_display: '#current_picked_image_ randomiser '
+        , no_image_message: '#no_picked_image_selected_ randomiser '
+        , remove_image_button: '#remove_picked_image_ randomiser '
+        , image_container: '#current_image_container_ randomiser '
+      };
+
+      $(document).ready(function(e) {
+        image_picker.init(image_picker_ randomiser _options);
+      });
+
+      image_picker_ randomiser _changed = function(args) {
+        image_picker.init(image_picker_ randomiser _options);
+        image_picker.changed(args);
+      }
+  

@@ -1,0 +1,8 @@
+- content_for :body_content_left do
+  %ul#blubs 
+    - @blubs.each do |blub|
+      %li
+        = link_to blub.name, blub_url(blub)
+
+
+= render :partial => "/shared/content_page"

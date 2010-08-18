@@ -1,0 +1,13 @@
+- form_for [:admin, @bla] do |f|
+= f.error_messages
+
+  .field
+    = f.label :test
+
+    = f.text_field :test, :class => 'larger'
+
+
+= render :partial => "/shared/admin/form_actions", 
+  :locals => { :f => f,
+    :continue_editing => false,
+    :delete_title => t('admin.blas.bla.delete') }

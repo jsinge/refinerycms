@@ -1,0 +1,19 @@
+nb:
+  plugins:
+    blubs:
+      title: Blubs
+  admin:
+    blubs:
+      index:
+        create_new: Lag en ny Blub
+        reorder: Endre rekkefølgen på Blubs
+        reorder_done: Ferdig å endre rekkefølgen Blubs
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Blubs enda. Klikk på "Lag en ny Blub" for å legge til din første blub.
+      blub:
+        view_live: Vis hvordan denne blub ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne blub
+        delete: Fjern denne blub permanent
+  blubs:
+    show:
+      other: Andre Blubs

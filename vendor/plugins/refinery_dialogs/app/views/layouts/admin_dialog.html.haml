@@ -1,0 +1,9 @@
+!!!
+%html
+  = render :partial => "/admin/head"
+  %body#dialog_container.dialog
+    #tooltip_container
+    #flash_container
+      = render :partial => '/shared/message'
+    #content.clearfix
+      = yield

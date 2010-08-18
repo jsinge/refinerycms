@@ -1,0 +1,20 @@
+- form_for [:admin, @blub] do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :name
+    = f.text_field :name, :class => 'larger'  
+  
+  .field
+    = f.label :description
+    = f.text_area :description, :rows => 20, :class => 'wymeditor widest'
+  
+  
+  .field
+    = f.label :bla_id
+    = f.text_field :bla_id  
+  
+  = render :partial => "/shared/admin/form_actions",
+    :locals => { :f => f,
+      :continue_editing => false,
+      :delete_title => t('admin.blubs.blub.delete') }

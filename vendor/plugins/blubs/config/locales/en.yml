@@ -1,0 +1,19 @@
+en:
+  plugins:
+    blubs:
+      title: Blubs
+  admin:
+    blubs:
+      index:
+        create_new: Create a new Blub
+        reorder: Reorder Blubs
+        reorder_done: Done Reordering Blubs
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Blubs yet. Click "Create a new Blub" to add your first blub.
+      blub:
+        view_live: View this blub live <br/><em>(opens in a new window)</em>
+        edit: Edit this blub
+        delete: Remove this blub forever
+  blubs:
+    show:
+      other: Other Blubs

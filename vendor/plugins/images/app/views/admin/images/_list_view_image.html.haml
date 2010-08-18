@@ -1,0 +1,18 @@
+- if list_view_image.parent_id.nil?
+  %li{:class => "clearfix record #{cycle("on", "on-hover")}", :id => "sortable_#{list_view_image.id}"}
+    %span.title
+      = list_view_image.title
+      %span.preview &nbsp;
+    %span.actions
+      = link_to refinery_icon_tag('eye.png'), list_view_image.public_filename, |
+        :target => "_blank",                                                   |
+        :title => "#{image_fu list_view_image, :preview}"                      |
+      -#
+      = link_to refinery_icon_tag('application_edit.png'), edit_admin_image_path(list_view_image), |
+        :title => t('.edit_this_image')                                                            |
+      -#
+      = link_to refinery_icon_tag('delete.png'), admin_image_path(list_view_image),                    |
+        :class => "cancel confirm-delete",                                                             |
+        :title => t('admin.images.image.delete.title'),                                                |
+        :'data-confirm' => t('admin.images.image.delete.message', :title => list_view_image.filename), |
+        :'data-method' => "delete"                                                                     |

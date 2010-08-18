@@ -1,0 +1,36 @@
+- form_for [:admin, @resource], :url => @url_override || @url,
+  :html => {:multipart => true} do |f|
+  = f.error_messages
+  .field
+    - if action_name =~ /(edit)|(update)/
+      = link_to t('.download_current'), @resource.public_filename,
+        :title => @resource.title
+      %em= t('.or')
+      = t('.replace')
+    = f.file_field :uploaded_data
+  .field
+    %label
+      = t('.maximum_file_size',
+        :megabytes => (Resource.attachment_options[:max_size] / 1024 / 1024))
+  = render :partial => "/shared/admin/form_actions",
+    :locals => { :f => f,
+      :continue_editing => false,
+      :hide_cancel => (@app_dialog or action_name == "insert" or from_dialog?),
+      :delete_title => t('admin.resources.resource.delete.title'),
+      :delete_confirmation => (t('admin.resources.resource.delete.message',
+      :title => @resource.title) unless @resource.new_record?) }
+  - if @app_dialog
+    %input{:name => "app_dialog", :type => "hidden", :value => @app_dialog}/
+    %input{:name => "field", :type => "hidden", :value => @field}/
+    %input{:name => "update_resource", :type => "hidden", :value => @update_resource}/
+    %input{:name => "update_text", :type => "hidden", :value => @update_text}/
+    %input{:name => "thumbnail", :type => "hidden", :value => @thumbnail}/
+    %input{:name => "callback", :type => "hidden", :value => @callback}/
+    %input{:name => "conditions", :type => "hidden", :value => @conditions}/
+    %input{:name => "current_link", :type => "hidden", :value => @current_link}/
+- content_for :head do
+  :javascript
+    $(document).ready(function(){
+      link_dialog.init();
+    });
+  - end if from_dialog?

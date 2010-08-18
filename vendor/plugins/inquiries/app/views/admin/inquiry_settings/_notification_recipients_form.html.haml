@@ -1,0 +1,17 @@
+- form_for([:admin, @inquiry_setting], :url => (@url_override || @url)) do |f|
+  = f.error_messages
+  .field
+    %span.label_with_help
+      = f.label :value, t('.inquiry_settings_value_name')
+    = f.text_field :value, :class => "larger widest"
+  %p
+    = t('.hint')
+  %p
+    = t('.example')
+  = render :partial => "/shared/admin/form_actions", |
+    :locals => {                                     |
+      :f => f,                                       |
+      :continue_editing => false,                    |
+      :cancel_url => admin_inquiries_url,            |
+      :hide_delete => true                           |
+    }                                                |

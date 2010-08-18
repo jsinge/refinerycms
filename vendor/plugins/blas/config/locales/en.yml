@@ -1,0 +1,19 @@
+en:
+  plugins:
+    blas:
+      title: Blas
+  admin:
+    blas:
+      index:
+        create_new: Create a new Bla
+        reorder: Reorder Blas
+        reorder_done: Done Reordering Blas
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Blas yet. Click "Create a new Bla" to add your first bla.
+      bla:
+        view_live: View this bla live <br/><em>(opens in a new window)</em>
+        edit: Edit this bla
+        delete: Remove this bla forever
+  blas:
+    show:
+      other: Other Blas

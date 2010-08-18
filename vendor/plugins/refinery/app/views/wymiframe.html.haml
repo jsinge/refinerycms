@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    - if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+      /[if lt IE 9]
+        <haml:loud> javascript_include_tag('http://html5shiv.googlecode.com/svn/trunk/html5.js') </haml:loud>
+      %meta{:content => "IE-EmulateIE7", "http-equiv" => "X-UA-Compatible"}/
+    %title WYMeditor
+    = stylesheet_link_tag "wymeditor/skins/refinery/wymiframe", :media => "all"
+    = stylesheet_link_tag "#{"/theme/stylesheets/" if RefinerySetting[:theme].present?}formatting", :media => "all"
+    = stylesheet_link_tag "theme", :media => "all"
+  %body{:class => "wym_iframe#{" #{params[:id]}" if params[:id].present?}"}
