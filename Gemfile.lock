@@ -42,6 +42,7 @@ GEM
       activesupport (>= 2.2)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
+    haml (3.0.17)
     hoe (2.6.1)
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
@@ -83,6 +84,7 @@ GEM
     trollop (1.16.2)
     truncate_html (0.3.2)
     will_paginate (2.3.14)
+    yard (0.5.8)
 
 PLATFORMS
   ruby
@@ -97,6 +99,7 @@ DEPENDENCIES
   factory_girl
   friendly_id (= 3.0.6)
   gherkin
+  haml (>= 3.0.0)
   json_pure (= 1.4.5)
   launchy
   rails (= 2.3.8)
