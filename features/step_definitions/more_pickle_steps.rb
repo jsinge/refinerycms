@@ -5,11 +5,11 @@
 # set an attribute to another model
 
 Given(/^#{capture_model}(?:'s)? (\w+) is #{capture_model}$/) do |name, association, ref|
-  model!(name).send(association) = model!(ref)
+  model!(name).update_attribute association, model!(ref)
 end
 
 Given(/^#{capture_model}(?:'s)? (\w+) is "([^"])"$/) do |name, attribute, value|
-  model!(name).send(attribute) = value
+  model!(name).update_attribute attribute, value
 end
 
 Given(/^#{capture_model}(?:'s)? (\w+) include #{capture_model}$/) do |name, association, ref|
