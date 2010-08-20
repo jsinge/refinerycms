@@ -59,19 +59,19 @@ class PageTest < ActiveSupport::TestCase
   def test_should_have_paramaterized_url
     # Save the page to generate the friendly_id slug
     pages(:products).save
-    assert_equal "products", pages(:products).to_param
+    assert_equal "products-overview", pages(:products).to_param
   end
 
   def test_should_have_nested_url
     pages(:blue_jelly).save
     pages(:products).save
-    assert_equal ['products','blue-jelly'], pages(:blue_jelly).nested_url # returns ancestors' to_param with its own
+    assert_equal ['products-overview','blue-jelly'], pages(:blue_jelly).nested_url # returns ancestors' to_param with its own
   end
 
   def test_regular_url_should_include_path
     pages(:blue_jelly).save
     pages(:products).save
-    assert_equal ['products','blue-jelly'], pages(:blue_jelly).url[:path]
+    assert_equal ['products-overview','blue-jelly'], pages(:blue_jelly).url[:path]
   end
 
   def test_friendly_id_default_reserved_words

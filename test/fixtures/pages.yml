@@ -60,7 +60,7 @@ home_page:
 
 # this is a products page that has 3 children, 1 that is hidden from the menu
 products:
-  title: Products
+  title: Products Overview
   position: 1
   show_in_menu: true
   deletable: true
