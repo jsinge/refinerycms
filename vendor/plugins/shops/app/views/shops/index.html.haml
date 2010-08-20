@@ -1,0 +1,8 @@
+- content_for :body_content_left do
+  %ul#shops 
+    - @shops.each do |shop|
+      %li
+        = link_to shop.title, shop_url(shop)
+
+
+= render :partial => "/shared/content_page"

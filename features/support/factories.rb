@@ -24,3 +24,8 @@ Factory.define :vendor, :parent => :user do |u|
     end
   end
 end
+
+Factory.define :shop do |s|
+  s.sequence(:title) { |n| "shop #{n}" }
+  s.user { |user| user.association(:vendor)}
+end

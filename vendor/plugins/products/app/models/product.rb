@@ -8,7 +8,10 @@ class Product < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :image
 
+  validates_presence_of :shop
+
   belongs_to :image
+  belongs_to :shop
 
   # validates_presence_of :ship_info
   # validates_presence_of :legal_info
