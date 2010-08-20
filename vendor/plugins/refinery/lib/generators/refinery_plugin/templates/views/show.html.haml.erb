@@ -5,7 +5,7 @@
 - content_for :body_content_left do
   <% attributes.each do |attribute| %>
   %div
-    %h3<%= attribute.name.titleize %>
+    %h3 <%= attribute.name.titleize %>
 <% if attribute.type.to_s == 'image' -%>
     = image_fu @<%= singular_name %>.<%= attribute.name %>, nil
 <% elsif attribute.type.to_s == 'resource' -%>
