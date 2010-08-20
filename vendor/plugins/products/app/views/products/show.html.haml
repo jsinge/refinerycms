@@ -1,0 +1,52 @@
+- content_for :body_content_title do
+  = @product.title
+
+
+- content_for :body_content_left do
+  
+  %div
+    %h3Title
+    = @product.title
+  
+  %div
+    %h3Description
+    = @product.description
+  
+  %div
+    %h3Long Description
+    = @product.long_description
+  
+  %div
+    %h3Image
+    = image_fu @product.image, nil
+  
+  %div
+    %h3Price
+    = @product.price
+  
+  %div
+    %h3Ship Info
+    = @product.ship_info_id
+  
+  %div
+    %h3Legal Info
+    = @product.legal_info_id
+  
+  %div
+    %h3Items
+    = @product.items
+  
+  %div
+    %h3Availability
+    = @product.availability_id
+  
+
+
+- content_for :body_content_right do
+  %h2= t('.other')
+  %ul#products
+    - @products.each do |product|
+      %li
+        = link_to product.title, product_url(product)
+
+= render :partial => "/shared/content_page"

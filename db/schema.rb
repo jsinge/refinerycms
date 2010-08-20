@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file,
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100729221735) do
+ActiveRecord::Schema.define(:version => 20100820082802) do
 
   create_table "images", :force => true do |t|
     t.integer  "parent_id"
@@ -80,6 +80,23 @@ ActiveRecord::Schema.define(:version => 20100729221735) do
 
   add_index "pages", ["id"], :name => "index_pages_on_id"
   add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
+
+  create_table "products", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "long_description"
+    t.integer  "image_id"
+    t.decimal  "price"
+    t.integer  "ship_info_id"
+    t.integer  "legal_info_id"
+    t.integer  "items"
+    t.integer  "availability_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["id"], :name => "index_products_on_id"
 
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"
