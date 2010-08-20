@@ -86,6 +86,23 @@ ActiveRecord::Schema.define(:version => 20100913234704) do
   add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
   add_index "pages", ["rgt"], :name => "index_pages_on_rgt"
 
+  create_table "products", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "long_description"
+    t.integer  "image_id"
+    t.decimal  "price"
+    t.integer  "ship_info_id"
+    t.integer  "legal_info_id"
+    t.integer  "items"
+    t.integer  "availability_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["id"], :name => "index_products_on_id"
+
   create_table "refinery_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"

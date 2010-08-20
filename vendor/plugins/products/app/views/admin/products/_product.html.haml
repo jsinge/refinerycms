@@ -1,0 +1,16 @@
+%li.clearfix.record{:class => cycle("on", "on-hover"), :id => dom_id(product)}
+  %span.title
+    =h product.title
+    %span.preview &nbsp;
+  
+  %span.actions
+    = link_to refinery_icon_tag("application_go.png"), product_url(product),
+        :title => t('.view_live'),
+        :target => "_blank"
+    = link_to refinery_icon_tag("application_edit.png"), edit_admin_product_path(product),
+         :title => t('.edit')
+    = link_to refinery_icon_tag("delete.png"), admin_product_path(product),
+        :class => "cancel confirm-delete",
+        :title => t('.delete')
+  
+

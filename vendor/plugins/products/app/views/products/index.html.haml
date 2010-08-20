@@ -1,0 +1,8 @@
+- content_for :body_content_left do
+  %ul#products 
+    - @products.each do |product|
+      %li
+        = link_to product.title, product_url(product)
+
+
+= render :partial => "/shared/content_page"

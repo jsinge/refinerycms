@@ -1,0 +1,36 @@
+%div#actions
+  %ul
+    %li
+      = render :partial => "/shared/admin/search", :locals => {:url => admin_products_url}
+    %li
+      = link_to "Create New Product", new_admin_product_url,
+        :class => "add_icon"
+  - if !searching? and Product.count > 1
+    %li
+      = link_to t('refinery.reorder', :what => "Products"), admin_products_url,
+        :id => "reorder_action",
+        :class => "reorder_icon"
+      = link_to t('refinery.reorder_done', :what => "Products"), admin_products_url,
+        :id => "reorder_action_done",
+        :style => "display: none;",
+        :class => "reorder_icon"
+
+%div#records
+  - if searching?
+    %h2= t('admin.search_results_for', :query => params[:search])
+    - if @products.any?
+      = render :partial => "product", :collection => @products
+    - else
+      %p= t('admin.search_no_results')
+
+  - else
+    - if @products.any?
+      = will_paginate @products, :previous_label => '&laquo;', :next_label => '&raquo;'
+      = render :partial => "sortable_list"
+      = will_paginate @products, :previous_label => '&laquo;', :next_label => '&raquo;'
+    - else
+      %p
+        %strong
+          = t('.no_items_yet')
+
+= render :partial => "/shared/admin/make_sortable", :locals => {:tree => false } if !searching? and Product.count > 1

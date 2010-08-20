@@ -1,0 +1,50 @@
+- form_for [:admin, @product] do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :title
+    = f.text_field :title, :class => 'larger'  
+  
+  .field
+    = f.label :description
+    = f.text_area :description, :rows => 20, :class => 'wymeditor widest'
+  
+  
+  .field
+    = f.label :long_description
+    = f.text_area :long_description, :rows => 20, :class => 'wymeditor widest'
+  
+  
+  .field
+    = f.label :image
+    = render :partial => "/shared/admin/image_picker",
+      :locals => { :f => f,
+        :field => :image_id,
+        :image => @product.image,
+        :toggle_image_display => false }
+  
+  
+  .field
+    = f.label :price
+    = f.text_field :price  
+  
+  .field
+    = f.label :ship_info_id
+    = f.text_field :ship_info_id  
+  
+  .field
+    = f.label :legal_info_id
+    = f.text_field :legal_info_id  
+  
+  .field
+    = f.label :items
+    = f.text_field :items  
+  
+  .field
+    = f.label :availability_id
+    = f.text_field :availability_id  
+  
+  = render :partial => "/shared/admin/form_actions",
+    :locals => { :f => f,
+      :continue_editing => false,
+      :delete_title => t('admin.products.product.delete') }
