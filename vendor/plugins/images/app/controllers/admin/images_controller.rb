@@ -4,8 +4,8 @@ class Admin::ImagesController < Admin::BaseController
 
   crudify :image,
           :order => "created_at DESC",
-          :conditions => "parent_id is NULL",
-          :search_conditions => "parent_id IS NULL",
+          :conditions => '"parent_id is NULL"',
+          :search_conditions => '"parent_id IS NULL"',
           :sortable => false
 
   before_filter :change_list_mode_if_specified, :init_dialog
