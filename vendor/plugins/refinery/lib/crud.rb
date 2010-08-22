@@ -133,7 +133,8 @@ module Crud
 
         def find_#{singular_name}
           @#{singular_name} = #{class_name}.find(params[:id],
-                                                 :include => %w(#{options[:include].join(' ')}))
+            :conditions => "#{options[:conditions]}",
+            :include => %w(#{options[:include].join(' ')}))
         end
 
         def find_all_#{plural_name}
