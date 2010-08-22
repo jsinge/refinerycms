@@ -68,4 +68,8 @@ class User < ActiveRecord::Base
     (role = Role.find_by_title(title.to_s.camelize)).present? and self.roles.collect{|r| r.id}.include?(role.id)
   end
 
+  #-------------------------------------------------------------------------------------------------
+
+  has_many :shops
+
 end
