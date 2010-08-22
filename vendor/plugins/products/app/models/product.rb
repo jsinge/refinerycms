@@ -16,4 +16,5 @@ class Product < ActiveRecord::Base
   # validates_presence_of :ship_info
   # validates_presence_of :legal_info
 
+  has_friendly_id :title, :use_slug => true
 end
