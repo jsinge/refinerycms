@@ -54,7 +54,7 @@ rmagick_options.update({
 # Specify a version of RMagick that works in your environment:
 gem 'rmagick',                  '~> 2.12.0', rmagick_options
 gem 'haml',             '>= 3.0.0'
-gem 'mongrel',             '>= 1.1.5'
+gem 'mongrel',          '>= 1.1.5'
 
 # END REFINERY CMS ============================================================
 
@@ -76,6 +76,7 @@ group :test do
   gem 'launchy'
   gem 'gherkin'
   gem 'pickle'
+  gem 'faker',          '>= 0.3.1'
   # TODO: Change back to gem when patch is merged in
   gem 'rack-test',              :git => 'git://github.com/alan/rack-test.git'
   # FIXME: JSON constant constants warnings
