@@ -16,6 +16,12 @@ Factory.define :refinery_user, :parent => :user do |u|
   end
 end
 
+Factory.define :image do |i|
+  i.content_type 'image/jpeg'
+  i.filename 'beach.jpeg'
+  i.size 5000
+end
+
 Factory.define :vendor, :parent => :user do |u|
   u.roles { [ Role[:vendor] ] }
   u.after_create do |user|
@@ -28,4 +34,11 @@ end
 Factory.define :shop do |s|
   s.sequence(:title) { |n| "shop #{n}" }
   s.user { |user| user.association(:vendor)}
+end
+
+Factory.define :product do |p|
+  p.title { Faker::Lorem.words }
+  p.description { Faker::Lorem.paragraph }
+  p.shop { |shop| shop.association(:shop)}
+  p.image { |image| image.association(:image) }
 end
