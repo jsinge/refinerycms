@@ -4,58 +4,73 @@
 
 - content_for :body_content_left do
   
-  %div
-    %h3 Title
-    = @product.title
+  - if @product.title
+    .title
+      %h3= t('product.title')
+      = @product.title
   
-  %div
-    %h3 Description
-    = @product.description
+  - if @product.description
+    .description
+      %h3= t('product.description')
+      = @product.description
   
-  %div
-    %h3 Long Description
-    = @product.long_description
+  - if @product.long_description
+    .long_description
+      %h3= t('product.long_description')
+      = @product.long_description
   
-  %div
-    %h3 Image
-    = image_fu @product.image, :grid
+  - if @product.image
+    .image
+      %h3= t('product.image')
+      = image_fu @product.image, :large
   
-  %div
-    %h3 Price
-    = @product.price
+  - if @product.price
+    .price
+      %h3= t('product.price')
+      = @product.price
   
-  %div
-    %h3 Ship Info
-    = @product.ship_info_id
+  - if @product.ship_info_id
+    .ship_info
+      %h3= t('product.ship_info')
+      = @product.ship_info_id
   
-  %div
-    %h3 Legal Info
-    = @product.legal_info_id
+  - if @product.legal_info_id
+    .legal_info
+      %h3= t('product.legal_info')
+      = @product.legal_info_id
   
-  %div
-    %h3 Items
-    = @product.items
+  - if @product.items
+    .items
+      %h3= t('product.items')
+      = @product.items
   
-  %div
-    %h3 Availability
-    = @product.availability_id
+  - if @product.availability_id
+    .availability
+      %h3= t('product.availability')
+      = @product.availability_id
   
 
-    
 
 - content_for :body_content_right do
-
-  %div
-    %h3 Shop Info
-    = @product.shop.title
-    %h3 Vendor Info
-    = @product.shop.user.login
-  %h2 More Products
-  %ul#more_products
-    = render @more_products
-   
   %h2= t('.other')
   %ul#products
-    = render @similar_products
+    - @products.each do |product|
+      %li
+        = link_to product.title, product_url(product)
+
+  .shop
+    %h3= t('product.shop')
+    = @product.shop.title
+  .vendor
+    %h3= t('product.vendor')
+    = @product.shop.user.login
+  .more
+    %h2= t('product.more')
+    %ul#more_products
+      = render @more_products
+  .similar
+    %h2= t('product.similar')
+      %ul#similar_products
+        = render @similar_products
 
 = render :partial => "/shared/content_page"
