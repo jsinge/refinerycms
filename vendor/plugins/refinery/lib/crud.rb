@@ -25,12 +25,12 @@ module Crud
       options = {
         :title_attribute => "title",
         :order => 'position ASC',
-        :conditions => '""',
+        :conditions => '',
         :sortable => true,
         :searchable => true,
         :include => [],
         :paging => true,
-        :search_conditions => '""',
+        :search_conditions => '',
         :redirect_to_url => "admin_#{plural_name}_url"
       }.merge!(new_options)
 
@@ -46,7 +46,7 @@ module Crud
           # if the position field exists, set this object as last object, given the conditions of this class.
           if #{class_name}.column_names.include?("position")
             params[:#{singular_name}].merge!({
-              :position => ((#{class_name}.maximum(:position, :conditions => #{options[:conditions]})||-1) + 1)
+              :position => ((#{class_name}.maximum(:position, :conditions => "#{options[:conditions]}")||-1) + 1)
             })
           end
 
@@ -133,7 +133,7 @@ module Crud
 
         def find_#{singular_name}
           @#{singular_name} = #{class_name}.find(params[:id],
-            :conditions => #{options[:conditions]},
+            :conditions => "#{options[:conditions]}",
             :include => %w(#{options[:include].join(' ')}))
         end
 
@@ -141,7 +141,7 @@ module Crud
           @#{plural_name} = #{class_name}.find(
             :all,
             :order => "#{options[:order]}",
-            :conditions => #{options[:conditions]},
+            :conditions => "#{options[:conditions]}",
             :include => %w(#{options[:include].join(' ')})
           )
         end
@@ -150,7 +150,7 @@ module Crud
           @#{plural_name} = #{class_name}.paginate(
             :page => params[:page],
             :order => "#{options[:order]}",
-            :conditions => #{options[:conditions]},
+            :conditions => "#{options[:conditions]}",
             :include => %w(#{options[:include].join(' ')})
           )
         end
@@ -159,7 +159,7 @@ module Crud
           @#{plural_name} = #{class_name}.with_query(params[:search]).find(
             :all,
             :order => "#{options[:order]}",
-            :conditions => #{options[:search_conditions]},
+            :conditions => "#{options[:search_conditions]}",
             :include => %w(#{options[:include].join(' ')})
           )
         end
@@ -168,7 +168,7 @@ module Crud
           @#{plural_name} = #{class_name}.with_query(params[:search]).paginate(
             :page => params[:page],
             :order => "#{options[:order]}",
-            :conditions => #{options[:search_conditions]},
+            :conditions => "#{options[:search_conditions]}",
             :include => %w(#{options[:include].join(' ')})
           )
         end
