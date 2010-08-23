@@ -18,7 +18,7 @@
   
   %div
     %h3 Image
-    = image_fu @product.image, nil
+    = image_fu @product.image, :grid
   
   %div
     %h3 Price
@@ -41,12 +41,21 @@
     = @product.availability_id
   
 
+    
 
 - content_for :body_content_right do
+
+  %div
+    %h3 Shop Info
+    = @product.shop.title
+    %h3 Vendor Info
+    = @product.shop.user.login
+  %h2 More Products
+  %ul#more_products
+    = render @more_products
+   
   %h2= t('.other')
   %ul#products
-    - @products.each do |product|
-      %li
-        = link_to product.title, product_url(product)
+    = render @similar_products
 
 = render :partial => "/shared/content_page"
