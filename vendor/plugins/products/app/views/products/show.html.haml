@@ -55,16 +55,7 @@
 
 
   .shop
-    %h3= t('product.shop')
-    = link_to @shop.title, @shop
-  .vendor
-    %h3= t('product.vendor')
-    = image_fu @shop.user.image, :preview
-    = @shop.user.name
-  .more
-    %h2= t('product.more')
-    %ul#more_products
-      = render @more_products
+    = render @shop
   .similar
     %h2= t('product.similar')
     %ul#similar_products
