@@ -7,4 +7,4 @@
     = image_fu shop.user.image, :preview
     = shop.user.name
   %h3= t('more_products')
-  = render shop.more_products
+  = render shop.products.pick(3).without(@product)
