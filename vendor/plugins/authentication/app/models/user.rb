@@ -71,5 +71,7 @@ class User < ActiveRecord::Base
   #-------------------------------------------------------------------------------------------------
 
   has_many :shops
+  belongs_to :image
+  validates_presence_of :name
 
 end
