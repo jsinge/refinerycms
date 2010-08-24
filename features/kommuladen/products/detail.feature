@@ -6,8 +6,7 @@ Feature: Details View of a Product
   Background:
     Given a vendor exists with login: "carlos"
     And a shop exists with owner: that vendor
-    And a product: lampe exists with title: "Lampe", price: 9.95
-    And that shop's products include that product
+    And a product: "lampe" exists with title: "Lampe", price: "9.95", shop: that shop
 
   Scenario: Basic information is displayed
     When I go to the product's page
