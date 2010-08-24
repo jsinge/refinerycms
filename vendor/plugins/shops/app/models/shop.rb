@@ -12,4 +12,10 @@ class Shop < ActiveRecord::Base
   has_many :products
   has_friendly_id :title, :use_slug => true
 
+  def more_products
+    number = 3;
+    products.sort_by{ rand }.slice(0...number)
+  end
+
+
 end
