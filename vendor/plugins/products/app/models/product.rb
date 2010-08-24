@@ -18,7 +18,12 @@ class Product < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
-  def similar_products
-    Product.find(:all, :limit => 6, :order => "random() ASC", :conditions => "'products'.id != '#{self.id}'")
+
+  named_scope :pick, lambda { |num| { :order => "random() ASC", :limit => num } }
+  named_scope :without, lambda { |product| { :conditions => "\"products\".id != #{product.id}" } if product }
+
+  def similar_products(number)
+    Product.find(:all, :limit => number, :order => "random() ASC", :conditions => "\"products\".id != #{self.id}")
   end
+
 end
