@@ -1,5 +1,5 @@
 Then /^(?:|I )should see #{capture_model}(?:'s)? (\w+)(?: within "([^\"]*)")?$/ do |owner, association, selector|
-  text = model!(owner.send(association))
+  text = model!(owner).send(association)
   with_scope(selector) do
     if page.respond_to? :should
       page.should have_content(text)
@@ -10,7 +10,7 @@ Then /^(?:|I )should see #{capture_model}(?:'s)? (\w+)(?: within "([^\"]*)")?$/ 
 end
 
 Then /^(?:|I )should not see #{capture_model}(?:'s)? (\w+)(?: within "([^\"]*)")?$/ do |owner, association, selector|
-  text = model!(owner.send(association))
+  text = model!(owner).send(association)
   with_scope(selector) do
     if page.respond_to? :should
       page.should have_no_content(text)
