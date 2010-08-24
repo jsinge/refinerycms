@@ -17,4 +17,8 @@ class Product < ActiveRecord::Base
   # validates_presence_of :legal_info
 
   has_friendly_id :title, :use_slug => true
+
+  def similar_products
+    Product.find(:all, :limit => 6, :order => "random() ASC", :conditions => "'products'.id != '#{self.id}'")
+  end
 end

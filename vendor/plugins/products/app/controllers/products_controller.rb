@@ -14,8 +14,6 @@ class ProductsController < ApplicationController
     @shop = @product.shop
     # more products from same shop:
     # todo: maximal 3 produkte anzeigen, evtl nach kriterien wie tag-ähnlichkeit oder beliebtheit auswählen
-    @more_products= @product.shop.products
-    @similar_products = Product.find(:all, :limit => 3, :order => "random() ASC")
 
     # you can use meta fields from your model instead (e.g. browser_title)
     # by swapping @page for @product in the line below:
