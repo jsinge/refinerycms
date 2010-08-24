@@ -26,6 +26,7 @@ gem 'truncate_html',    '= 0.3.2', :require => 'truncate_html'
 gem 'will_paginate',    '= 2.3.14', :require => 'will_paginate'
 gem 'haml',             '>= 3.0.0'
 gem 'mongrel',          '>= 1.1.5'
+gem 'is_taggable',      '>= 0.1.0'
 
 group :test do
   gem 'json_pure',      '=1.4.6', :require => 'json/pure'
