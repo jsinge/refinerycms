@@ -14,6 +14,8 @@ class Product < ActiveRecord::Base
   belongs_to :shop
 
   is_taggable :tags, :languages
+  IsTaggable::TagList.delimiter = ", "
+
 
   # validates_presence_of :ship_info
   # validates_presence_of :legal_info
