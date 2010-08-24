@@ -4,6 +4,7 @@ require 'faker'
 Factory.define :user do |u|
   u.sequence(:login) { |n| "person#{n}" }
   u.sequence(:email) { |n| "person#{n}@cucumber.com" }
+  u.name { Faker::Lorem.words(2) }
   u.password  "greenandjuicy"
   u.password_confirmation "greenandjuicy"
 end
