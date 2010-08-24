@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @shop = @product.shop
+    @similar_products = Product.similar_to(@product).without(@product).limit(3)
     # more products from same shop:
     # todo: maximal 3 produkte anzeigen, evtl nach kriterien wie tag-ähnlichkeit oder beliebtheit auswählen
 
