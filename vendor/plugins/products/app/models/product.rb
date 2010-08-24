@@ -13,6 +13,8 @@ class Product < ActiveRecord::Base
   belongs_to :image
   belongs_to :shop
 
+  is_taggable :tags, :languages
+
   # validates_presence_of :ship_info
   # validates_presence_of :legal_info
 
