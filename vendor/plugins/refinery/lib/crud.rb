@@ -25,7 +25,7 @@ module Crud
       options = {
         :title_attribute => "title",
         :order => 'position ASC',
-        :conditions => '',
+        :conditions => nil,
         :sortable => true,
         :searchable => true,
         :include => [],
@@ -135,7 +135,7 @@ module Crud
 
         def find_#{singular_name}
           @#{singular_name} = #{class_name}.find(params[:id],
-            :conditions => "#{options[:conditions]}",
+            #{conditions_if_any(options)}
             :include => %w(#{options[:include].join(' ')}))
         end
 
@@ -261,6 +261,12 @@ module Crud
         )
       end
 
+    end
+
+    def conditions_if_any(options)
+      unless options[:conditions].blank?
+        ":conditions => \"#{options[:conditions]}\"," 
+      end
     end
 
   end
