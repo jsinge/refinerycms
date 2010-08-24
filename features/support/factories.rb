@@ -1,4 +1,5 @@
 require 'factory_girl'
+require 'faker'
 
 Factory.define :user do |u|
   u.sequence(:login) { |n| "person#{n}" }
