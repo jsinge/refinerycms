@@ -15,6 +15,10 @@
     <%= f.text_field :email %>
   </div>
   <div class='field'>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class='field'>
     <%= f.label :password %>
     <%= f.password_field :password, :autocomplete => 'off' %>
     <%= "<br /><span class='preview'>#{t('.blank_password_keeps_current')}</span>".html_safe unless @user.new_record? %>
@@ -22,6 +26,18 @@
   <div class='field'>
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, :autocomplete => 'off' %>
+  </div>
+  <div class='field'>
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => 'wymeditor' %>
+  </div>
+  <div class='field'>
+    <%= f.label :image %>
+    <%= render :partial => "/shared/admin/image_picker",
+      :locals => { :f => f,
+        :field => :image_id,
+        :image => @user.image,
+        :toggle_image_display => false } %>
   </div>
   <div class='field plugin_access'>
     <span class='label_with_help'>
