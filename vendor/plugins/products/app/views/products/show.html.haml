@@ -52,25 +52,22 @@
 
 
 - content_for :body_content_right do
-  %h2= t('.other')
-  %ul#products
-    - @products.each do |product|
-      %li
-        = link_to product.title, product_url(product)
+
 
   .shop
     %h3= t('product.shop')
-    = @product.shop.title
+    = link_to @shop.title, @shop
   .vendor
     %h3= t('product.vendor')
-    = @product.shop.user.login
+    = image_fu @shop.user.image, :preview
+    = @shop.user.name
   .more
     %h2= t('product.more')
     %ul#more_products
       = render @more_products
   .similar
     %h2= t('product.similar')
-      %ul#similar_products
-        = render @similar_products
+    %ul#similar_products
+      = render @similar_products
 
 = render :partial => "/shared/content_page"
