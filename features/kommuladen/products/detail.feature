@@ -36,8 +36,9 @@ Feature: Details View of a Product
     Then I should be on that user's page
 
   Scenario: Tags displayed
-    Given that product is tagged as "Papier"
+    Given that product is tagged as "Papier, Maritim"
     When I go to the product's page
+    Then that product should be tagged with "Papier"
     Then I should see "Papier" within "div.tags"
 
   Scenario: Labels displayed
