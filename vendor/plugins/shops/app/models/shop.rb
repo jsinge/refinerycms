@@ -10,6 +10,7 @@ class Shop < ActiveRecord::Base
   belongs_to :user
 
   has_many :products 
+  has_many :categories
   
   has_friendly_id :title, :use_slug => true
 

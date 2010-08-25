@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
 
   belongs_to :image
   belongs_to :shop
+  has_many :category_products
+  has_many :categories, :through => :category_products
 
   is_taggable :tags, :languages
   IsTaggable::TagList.delimiter = ", "
