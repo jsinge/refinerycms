@@ -1,13 +1,4 @@
-- content_for :body_content_title do
-  = @category.title
-
-
-- content_for :body_content_left do
-  - if @shop
-    .shoptitle
-      %h3= t('shop.title')
-      = @shop.title
-  
+- content_for :shop_content do
   - if @category.title
     .title
       %h3= t('category.title')
@@ -23,25 +14,10 @@
       %h3= t('category.description')
       = @category.description
 
-  - if @category.products
+  - if @category.products.any?
+    %h3= t('category.products')
     .products
       = render @category.products
   
-  - if @category.parent_id
-    .parent
-      %h3= t('category.parent')
-      = @category.parent_id
-  
-  
 
-  
-
-
-- content_for :body_content_right do
-  %h2= t('.other')
-  %ul#categories
-    - @categories.each do |category|
-      %li
-        = link_to category.title, category_url(category)
-
-= render :partial => "/shared/content_page"
+= render :partial => "layouts/shop"

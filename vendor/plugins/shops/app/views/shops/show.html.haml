@@ -1,12 +1,4 @@
-- content_for :body_content_title do
-  = @shop.title
-
-
-- content_for :body_content_left do
-  
-  %div
-    %h3 Title
-    = @shop.title
+- content_for :shop_content do
   
   %div
     %h3 Description
@@ -15,11 +7,6 @@
   %div
     %h3 Image
     = image_fu @shop.image, nil
-
-  %div
-    %h3 Categories
-    %ul
-      = render @shop.categories
   
   %div
     %h3 Products
@@ -28,18 +15,5 @@
   
 
 
-- content_for :body_content_right do
-  %div
-    %h3 User
-    = @shop.user_id
-  
-  %div
-    %h3 Legal Info
-    = @shop.legal_info
-  %h2= t('.other')
-  %ul#shops
-    - @shops.each do |shop|
-      %li
-        = link_to shop.title, shop_url(shop)
 
-= render :partial => "/shared/content_page"
+= render :partial => "layouts/shop"
