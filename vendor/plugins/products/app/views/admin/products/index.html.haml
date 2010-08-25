@@ -5,7 +5,7 @@
     %li
       = link_to "Create New Product", new_admin_product_url,
         :class => "add_icon"
-  - if !searching? and Product.count > 1
+    - if !searching? and Product.count > 1
     %li
       = link_to t('refinery.reorder', :what => "Products"), admin_products_url,
         :id => "reorder_action",
