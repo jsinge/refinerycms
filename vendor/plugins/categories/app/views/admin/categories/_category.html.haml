@@ -1,0 +1,19 @@
+%li.clearfix.record{:class => cycle("on", "on-hover"), :id => dom_id(category)}
+  %span.title
+    =h category.title
+    %span.preview &nbsp;
+  
+  %span.actions
+    = link_to refinery_icon_tag("application_go.png"), category_url(category),
+        :title => t('.view_live'),
+        :target => "_blank"
+    = link_to refinery_icon_tag("application_edit.png"), edit_admin_category_path(category),
+         :title => t('.edit')
+    = link_to refinery_icon_tag("delete.png"), admin_category_path(category),
+        :class => "cancel confirm-delete",
+        :title => t('.delete')
+
+  - if (children = category.children).any?
+    %ul.nested
+      = render children
+

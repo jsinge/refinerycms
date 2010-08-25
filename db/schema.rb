@@ -12,6 +12,19 @@
 
 ActiveRecord::Schema.define(:version => 20100913234704) do
 
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "parent_id"
+    t.integer  "shop_id"
+    t.integer  "image_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["id"], :name => "index_categories_on_id"
+
   create_table "images", :force => true do |t|
     t.string   "image_mime_type"
     t.string   "image_name"
