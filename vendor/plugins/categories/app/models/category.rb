@@ -14,4 +14,6 @@ class Category < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
 
+  named_scope :top, :conditions => "'categories'.parent_id IS NULL"
+
 end
