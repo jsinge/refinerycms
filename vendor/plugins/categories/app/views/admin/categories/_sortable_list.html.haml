@@ -1,5 +1,5 @@
 %ul#sortable_list
-  = render :partial => 'category', :collection => @categories
+  = render :partial => 'category', :collection => @categories.select{|c| c.parent == nil}
 
 = render :partial => "/shared/admin/sortable_list",
   :locals => {:continue_reordering => (defined?(continue_reordering) ? continue_reordering : true)}
