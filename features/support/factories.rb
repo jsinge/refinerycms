@@ -4,7 +4,7 @@ require 'faker'
 Factory.define :user do |u|
   u.sequence(:login) { |n| "person#{n}" }
   u.sequence(:email) { |n| "person#{n}@cucumber.com" }
-  u.name { Faker::Lorem.words(2) }
+  u.name { Faker::Lorem.words(2).join(" ") }
   u.password  "greenandjuicy"
   u.password_confirmation "greenandjuicy"
 end
@@ -39,7 +39,7 @@ Factory.define :shop do |s|
 end
 
 Factory.define :product do |p|
-  p.title { Faker::Lorem.words }
+  p.title { Faker::Lorem.words(2).join(" ") }
   p.description { Faker::Lorem.paragraph }
   p.shop { |shop| shop.association(:shop)}
   p.image { |image| image.association(:image) }
