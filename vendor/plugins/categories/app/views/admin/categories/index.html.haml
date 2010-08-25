@@ -5,7 +5,7 @@
     %li
       = link_to "Create New Category", new_admin_category_url,
         :class => "add_icon"
-  - if !searching? and Category.count > 1
+    - if !searching? and Category.count > 1
     %li
       = link_to t('refinery.reorder', :what => "Categories"), admin_categories_url,
         :id => "reorder_action",
