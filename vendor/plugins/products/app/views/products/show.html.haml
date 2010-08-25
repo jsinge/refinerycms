@@ -59,6 +59,8 @@
   .similar
     %h2= t('product.similar')
     %ul#similar_products
-      = render @product.similar_products(3)
-
+      = render @similar_products
+  .tags
+    %h2= t('product.tags')
+    = @product.tag_list 
 = render :partial => "/shared/content_page"

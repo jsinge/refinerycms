@@ -14,6 +14,8 @@ class Product < ActiveRecord::Base
   belongs_to :shop
 
   is_taggable :tags, :languages
+  IsTaggable::TagList.delimiter = ", "
+
 
   # validates_presence_of :ship_info
   # validates_presence_of :legal_info
@@ -21,11 +23,20 @@ class Product < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
 
-  named_scope :pick, lambda { |num| { :order => "random() ASC", :limit => num } }
+  named_scope :randomize, :order => "random() ASC"
+  named_scope :limit, lambda { |num| { :limit => num } }
   named_scope :without, lambda { |product| { :conditions => "\"products\".id != #{product.id}" } if product }
+  named_scope :similar_to, lambda {|product| {
+    :order => "similarity DESC",
+    :joins => ["JOIN taggings as t1 ON t1.taggable_id=#{product.id}",
+               "JOIN taggings as t2 ON t2.taggable_type=\"Product\" AND products.id = t2.taggable_id"],
+    :group => "products.id",
+    :select => "products.*, count(products.id) AS similarity",
+    :conditions => "t2.tag_id=t1.tag_id "
+     }}
 
   def similar_products(number)
-    Product.find(:all, :limit => number, :order => "random() ASC", :conditions => "\"products\".id != #{self.id}")
+    Product.without(self).find(:all, :limit => number, :order => "similarity DESC", :joins => ["JOIN taggings as t1 ON t1.taggable_id=#{self.id}", "JOIN taggings as t2 ON t2.tag_id=t1.tag_id AND products.id = t2.taggable_id"], :group => "products.id", :select => "products.*, count(products.id) AS similarity", :conditions => "t2.taggable_type=\"Product\"")
   end
 
 end
