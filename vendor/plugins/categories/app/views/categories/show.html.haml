@@ -3,31 +3,37 @@
 
 
 - content_for :body_content_left do
+  - if @shop
+    .shoptitle
+      %h3= t('shop.title')
+      = @shop.title
   
   - if @category.title
     .title
       %h3= t('category.title')
       = @category.title
+
+  - if @category.image
+    .image
+      %h3= t('category.image')
+      = image_fu @category.image, :large
   
   - if @category.description
     .description
       %h3= t('category.description')
       = @category.description
+
+  - if @category.products
+    .products
+      = render @category.products
   
   - if @category.parent_id
     .parent
       %h3= t('category.parent')
       = @category.parent_id
   
-  - if @category.shop_id
-    .shop
-      %h3= t('category.shop')
-      = @category.shop_id
   
-  - if @category.image
-    .image
-      %h3= t('category.image')
-      = image_fu @category.image, :large
+
   
 
 
