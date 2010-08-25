@@ -15,10 +15,16 @@
   %div
     %h3 Image
     = image_fu @shop.image, nil
+
+  %div
+    %h3 Categories
+    %ul
+      = render @shop.categories
   
   %div
     %h3 Products
     = render @shop.products
+    = link_to "weitere Produkte...", shop_products_path(@shop)
   
 
 
