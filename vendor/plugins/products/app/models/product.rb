@@ -35,8 +35,6 @@ class Product < ActiveRecord::Base
     :conditions => "t2.tag_id=t1.tag_id "
      }}
 
-  def similar_products(number)
-    Product.without(self).find(:all, :limit => number, :order => "similarity DESC", :joins => ["JOIN taggings as t1 ON t1.taggable_id=#{self.id}", "JOIN taggings as t2 ON t2.tag_id=t1.tag_id AND products.id = t2.taggable_id"], :group => "products.id", :select => "products.*, count(products.id) AS similarity", :conditions => "t2.taggable_type=\"Product\"")
-  end
+
 
 end
