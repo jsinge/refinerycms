@@ -24,7 +24,12 @@ class ProductsController < ApplicationController
 protected
 
   def find_all_products
-    @products = Product.find(:all, :order => "position ASC")
+    if params[:shop_id]
+      @shop = Shop.find(params[:shop_id])
+      @products = @shop.products.find(:all, :order => "position ASC")
+    else
+      @products = Product.find(:all, :order => "position ASC")
+    end
   end
 
   def find_page
