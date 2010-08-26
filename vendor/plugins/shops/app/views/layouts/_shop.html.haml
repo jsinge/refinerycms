@@ -18,6 +18,10 @@
   %div
     %h3 User
     = @shop.user.name
+
+  %div
+    %h3= t('shop.tags')
+    %div= render shop.tags
   
   %div
     %h3 Legal Info
