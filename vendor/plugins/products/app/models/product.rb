@@ -10,6 +10,10 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :shop
 
+  def validate
+    errors.add("categories","A category has a different shop") unless categories_shop_consistency
+  end
+
   belongs_to :image
   belongs_to :shop
   has_many :category_products
@@ -37,6 +41,13 @@ class Product < ActiveRecord::Base
     :conditions => "t2.tag_id=t1.tag_id "
      }}
 
-
+  def categories_shop_consistency
+    if self.categories.any?
+      self.categories.each do |c|
+        return false if self.shop_id != c.shop_id
+      end
+    end
+    return true
+  end
 
 end
