@@ -34,7 +34,15 @@
   
   .field
     = f.label :shop_id
-    = f.text_field :shop_id  
+    = f.text_field :shop_id
+
+  .field
+    = f.label :categories
+    = f.collection_select :category_ids, @product.shop.categories, :id, :title, { :include_blank => true, :multiple => true}, {:size => 5, :multiple => true}
+
+
+	
+
 
   .field
     = f.label :ship_info_id
