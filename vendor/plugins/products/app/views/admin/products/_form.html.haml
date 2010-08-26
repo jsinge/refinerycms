@@ -38,7 +38,7 @@
 
   .field
     = f.label :categories
-    = f.collection_select :category_ids, @product.shop.categories, :id, :title, { :include_blank => true, :multiple => true}, {:size => 5, :multiple => true}
+    = f.collection_select :category_ids, @categories, :id, :indented_title, { :include_blank => true, :multiple => true}, {:size => 5, :multiple => true}
 
 
 	

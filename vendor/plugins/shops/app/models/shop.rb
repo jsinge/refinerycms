@@ -24,7 +24,14 @@ class Shop < ActiveRecord::Base
              :order => "frequency DESC")
   end
 
-
-
+  # lists categories ordered using depth-first traversal
+  def list_categories
+    traverse(self.categories.top)
+  end
+  
+  # list all subcategories recursively
+  def traverse(categories)
+    categories.map{|cat| [cat] + traverse(cat.children)}.flatten
+  end
 
 end
