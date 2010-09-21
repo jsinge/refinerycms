@@ -56,11 +56,13 @@
 
   .shop
     = render @shop
-  .similar
-    %h2= t('product.similar')
-    %ul#similar_products
-      = render @similar_products
-  .tags
-    %h2= t('product.tags')
-    = @product.tag_list 
+  - if @similar_products.any?
+    .similar
+      %h2= t('product.similar')
+      %ul#similar_products
+        = render @similar_products
+  - unless @product.tag_list.empty?
+    .tags
+      %h2= t('product.tags')
+      = @product.tag_list
 = render :partial => "/shared/content_page"
