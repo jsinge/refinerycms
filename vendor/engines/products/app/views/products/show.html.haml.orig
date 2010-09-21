@@ -1,0 +1,78 @@
+- content_for :body_content_title do
+  = @product.title
+
+
+- content_for :body_content_left do
+  
+  - if @product.title
+    .title
+      %h3= t('product.title')
+      = @product.title
+  
+  - if @product.description
+    .description
+      %h3= t('product.description')
+      = @product.description
+  
+  - if @product.long_description
+    .long_description
+      %h3= t('product.long_description')
+      = @product.long_description
+  
+  - if @product.image
+    .image
+      %h3= t('product.image')
+      = image_fu @product.image, :large
+  
+  - if @product.price
+    .price
+      %h3= t('product.price')
+      = @product.price
+  
+  - if @product.ship_info_id
+    .ship_info
+      %h3= t('product.ship_info')
+      = @product.ship_info_id
+  
+  - if @product.legal_info_id
+    .legal_info
+      %h3= t('product.legal_info')
+      = @product.legal_info_id
+  
+  - if @product.items
+    .items
+      %h3= t('product.items')
+      = @product.items
+  
+  - if @product.availability_id
+    .availability
+      %h3= t('product.availability')
+      = @product.availability_id
+  
+
+
+- content_for :body_content_right do
+
+
+  .shop
+    = render @shop
+<<<<<<< HEAD
+  .similar
+    %h2= t('product.similar')
+    %ul#similar_products
+      = render @similar_products
+  .tags
+    %h2= t('product.tags')
+    = @product.tag_list 
+=======
+  - if @similar_products.any?
+    .similar
+      %h2= t('product.similar')
+      %ul#similar_products
+        = render @similar_products
+  - unless @product.tag_list.empty?
+    .tags
+      %h2= t('product.tags')
+      = @product.tag_list
+>>>>>>> jonas/master
+= render :partial => "/shared/content_page"
