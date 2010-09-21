@@ -1,4 +1,8 @@
 en:
+  shared:
+    admin:
+      image_picker:
+        image: image
   plugins:
     products:
       title: Products
