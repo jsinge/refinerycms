@@ -42,10 +42,8 @@ class Product < ActiveRecord::Base
      }}
 
   def categories_shop_consistency
-    if self.categories.any?
-      self.categories.each do |c|
-        return false if self.shop_id != c.shop_id
-      end
+    self.categories.each do |c|
+      return false if self.shop_id != c.shop_id
     end
     return true
   end
