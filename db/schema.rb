@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(:version => 20100913234704) do
     t.integer "position"
   end
 
-  add_index "user_plugins", ["name"], :name => "index_user_plugins_on_title"
+  add_index "user_plugins", ["name"], :name => "index_user_plugins_on_name"
   add_index "user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
 
   create_table "users", :force => true do |t|
