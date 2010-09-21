@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.text :long_description
+      t.integer :shop_id
       t.integer :image_id
       t.decimal :price
       t.integer :ship_info_id
@@ -24,12 +25,7 @@ class CreateProducts < ActiveRecord::Migration
   def self.down
     UserPlugin.destroy_all({:name => "Products"})
 
-    Page.find_all_by_link_url("/products").each do |page|
-      page.link_url, page.menu_match = nil
-      page.deletable = true
-      page.destroy
-    end
-    Page.destroy_all({:link_url => "/products"})
+    Page.delete_all({:link_url => "/products"})
 
     drop_table :products
   end

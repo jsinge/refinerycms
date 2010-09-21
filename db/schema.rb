@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100913234704) do
+ActiveRecord::Schema.define(:version => 20100921160027) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20100913234704) do
     t.string   "title"
     t.text     "description"
     t.text     "long_description"
+    t.integer  "shop_id"
     t.integer  "image_id"
     t.decimal  "price"
     t.integer  "ship_info_id"
@@ -118,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20100913234704) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "shop_id"
   end
 
   add_index "products", ["id"], :name => "index_products_on_id"
