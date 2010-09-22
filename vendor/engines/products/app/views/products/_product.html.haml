@@ -1,6 +1,6 @@
 
 %li
   = image_fu product.image, :preview
-  = link_to product.title, shop_product_path(product.shop, product)
+  = link_to product.title, product
   = product.shop.title unless product.shop == @shop
   = product.description

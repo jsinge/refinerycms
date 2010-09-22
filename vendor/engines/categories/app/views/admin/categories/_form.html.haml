@@ -1,0 +1,33 @@
+- form_for [:admin, @category] do |f|
+  = f.error_messages
+  
+  .field
+    = f.label :title
+    = f.text_field :title, :class => 'larger'  
+  
+  .field
+    = f.label :description
+    = f.text_area :description, :rows => 20, :class => 'wymeditor widest'
+  
+  
+  .field
+    = f.label :parent_id
+    = f.text_field :parent_id  
+  
+  .field
+    = f.label :shop_id
+    = f.text_field :shop_id  
+  
+  .field
+    = f.label :image
+    = render :partial => "/shared/admin/image_picker",
+      :locals => { :f => f,
+        :field => :image_id,
+        :image => @category.image,
+        :toggle_image_display => false }
+  
+  
+  = render :partial => "/shared/admin/form_actions",
+    :locals => { :f => f,
+      :continue_editing => false,
+      :delete_title => t('admin.categories.category.delete') }

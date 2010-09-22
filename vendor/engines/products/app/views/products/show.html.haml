@@ -56,7 +56,7 @@
 
   .shop
     = render @shop
-  - if @similar_products.any?
+  - if @similar_products.all.any?
     .similar
       %h2= t('product.similar')
       %ul#similar_products

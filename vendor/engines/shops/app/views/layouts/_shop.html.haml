@@ -1,0 +1,36 @@
+- content_for :body_content_title do
+  = link_to @shop.title, @shop
+
+
+- content_for :body_content_left do
+  
+  = yield :shop_content
+
+
+- content_for :body_content_right do
+  - if @shop.categories.any?
+    %div
+      %h3 Categories
+      %ul
+        = render @shop.categories.top
+
+  
+  %div
+    %h3 User
+    = @shop.user.name
+
+  %div
+    %h3= t('shop.tags')
+    %div=  @shop.tags
+  
+  %div
+    %h3 Legal Info
+    = @shop.legal_info
+  - if @shops
+    %h2= t('shop.other')
+    %ul#shops
+      - @shops.each do |shop|
+        %li
+          = link_to shop.title, shop_url(shop)
+
+= render :partial => "/shared/content_page"

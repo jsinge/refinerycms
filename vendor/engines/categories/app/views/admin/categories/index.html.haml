@@ -1,0 +1,34 @@
+%div#actions
+  %ul
+    %li
+      = render :partial => "/shared/admin/search", :locals => {:url => admin_categories_url}
+    %li
+      = link_to "Create New Category", new_admin_category_url,
+        :class => "add_icon"
+    - if !searching? and Category.count > 1
+    %li
+      = link_to t('.reorder', :what => "Categories"), admin_categories_url,
+        :id => "reorder_action",
+        :class => "reorder_icon"
+      = link_to t('.reorder_done', :what => "Categories"), admin_categories_url,
+        :id => "reorder_action_done",
+        :style => "display: none;",
+        :class => "reorder_icon"
+
+%div#records
+  - if searching?
+    %h2= t('admin.search_results_for', :query => params[:search])
+    - if @categories.any?
+      = render :partial => "category", :collection => @categories
+    - else
+      %p= t('admin.search_no_results')
+
+  - else
+    - if @categories.any?
+      = render :partial => "sortable_list"
+    - else
+      %p
+        %strong
+          = t('.no_items_yet')
+
+= render :partial => "/shared/admin/make_sortable", :locals => {:tree => true } if !searching? and Category.count > 1

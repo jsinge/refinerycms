@@ -1,0 +1,18 @@
+- content_for :shop_content do
+  
+  %div
+    %h3 Description
+    = @shop.description
+  
+  %div
+    %h3 Image
+    = image_fu @shop.image, nil
+  
+  %div
+    %h3 Products
+    = render @shop.products
+  
+
+
+
+= render :partial => "layouts/shop"

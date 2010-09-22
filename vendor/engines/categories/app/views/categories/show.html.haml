@@ -1,0 +1,23 @@
+- content_for :shop_content do
+  - if @category.title
+    .title
+      %h3= t('category.title')
+      = @category.title
+
+  - if @category.image
+    .image
+      %h3= t('category.image')
+      = image_fu @category.image, :large
+  
+  - if @category.description
+    .description
+      %h3= t('category.description')
+      = @category.description
+
+  - if @category.products.any?
+    %h3= t('category.products')
+    .products
+      = render @category.products
+  
+
+= render :partial => "layouts/shop"

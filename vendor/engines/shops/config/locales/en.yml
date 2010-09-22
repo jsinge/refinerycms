@@ -1,0 +1,23 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    shops:
+      title: Shops
+  admin:
+    shops:
+      index:
+        create_new: Create a new Shop
+        reorder: Reorder Shops
+        reorder_done: Done Reordering Shops
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Shops yet. Click "Create a new Shop" to add your first shop.
+      shop:
+        view_live: View this shop live <br/><em>(opens in a new window)</em>
+        edit: Edit this shop
+        delete: Remove this shop forever
+  shops:
+    show:
+      other: Other Shops
