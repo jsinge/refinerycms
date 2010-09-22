@@ -36,13 +36,14 @@
     = f.label :shop_id
     = f.text_field :shop_id
 
-  - categories = @product.shop.list_categories
-  -if categories.any?
-    .field
-      = f.label :categories
-      = f.collection_select :category_ids, categories, :id, :indented_title,
-      { :include_blank => true, :multiple => true},
-      {:size => categories.count+1, :multiple => true}
+  -if @product.shop
+    -categories = @product.shop.list_categories
+    -if categories.any?
+      .field
+        = f.label :categories
+        = f.collection_select :category_ids, categories, :id, :indented_title,
+        { :include_blank => true, :multiple => true},
+        {:size => categories.count+1, :multiple => true}
 
 
 	
