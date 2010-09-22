@@ -7,7 +7,7 @@ page = Page.create(
   :title => "Shops",
   :link_url => "/shops",
   :deletable => false,
-  :position => ((Page.maximum(:position, :conditions => "parent_id IS NULL") || -1)+1),
+  :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
   :menu_match => "^/shops(\/|\/.+?|)$"
 )
 Page.default_parts.each do |default_page_part|
