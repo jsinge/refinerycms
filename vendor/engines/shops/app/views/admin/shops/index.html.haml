@@ -5,15 +5,15 @@
     %li
       = link_to t('.create_new', :what => "Shops"), new_admin_shop_url,
         :class => "add_icon"
-  - if !searching? and Shop.count > 1
-    %li
-      = link_to t('.reorder', :what => "Shops"), admin_shops_url,
-        :id => "reorder_action",
-        :class => "reorder_icon"
-      = link_to t('.reorder_done', :what => "Shops"), admin_shops_url,
-        :id => "reorder_action_done",
-        :style => "display: none;",
-        :class => "reorder_icon"
+    - if !searching? and Shop.count > 1
+      %li
+        = link_to t('.reorder', :what => "Shops"), admin_shops_url,
+          :id => "reorder_action",
+          :class => "reorder_icon"
+        = link_to t('.reorder_done', :what => "Shops"), admin_shops_url,
+          :id => "reorder_action_done",
+          :style => "display: none;",
+          :class => "reorder_icon"
 
 %div#records
   - if searching?
