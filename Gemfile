@@ -15,7 +15,7 @@ gem 'sqlite3-ruby',             :require => 'sqlite3'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug'
+ gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -56,7 +56,7 @@ gem 'rmagick',                  '~> 2.12.0', rmagick_options
 gem 'haml',             '>= 3.0.0'
 gem 'mongrel',          '>= 1.1.5'
 gem 'is_taggable',      '>= 0.1.0'
-
+gem 'acts_as_tree'
 # END REFINERY CMS ============================================================
 
 # REFINERY CMS DEVELOPMENT ====================================================
@@ -101,3 +101,7 @@ end
 # Bundle gems for certain environments:
 
 # END REFINERY CMS DEVELOPMENT =================================================
+
+gem 'refinerycms-products', '1.0', :path => 'vendor/engines', :require => 'products'
+gem 'refinerycms-categories', '1.0', :path => 'vendor/engines', :require => 'categories'
+gem 'refinerycms-shops', '1.0', :path => 'vendor/engines', :require => 'shops'
