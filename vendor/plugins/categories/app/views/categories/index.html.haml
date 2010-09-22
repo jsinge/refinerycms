@@ -1,8 +1,0 @@
-- content_for :body_content_left do
-  %ul#categories 
-    - @categories.each do |category|
-      %li
-        = link_to category.title, category_url(category)
-
-
-= render :partial => "/shared/content_page"
