@@ -4,5 +4,7 @@
 # You can extend refinery backend with your own functions here and they will likely not get overriden in an update.
 
 class Admin::BaseController < Refinery::AdminBaseController
+  require 'owner_limited'
+  include ::OwnerLimited
 
 end
